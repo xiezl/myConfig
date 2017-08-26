@@ -11,6 +11,13 @@ syntax on
 set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 let mapleader = ","
 
+set foldenable
+set foldmethod=indent
+set foldcolumn=0
+setlocal foldlevel=1
+set foldlevelstart=99
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
 " vundle configuration
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -33,6 +40,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -141,4 +150,11 @@ let delimitMate_expand_cr = 1
 " autoformat setting
 let g:formatdef_googlecplus = '"clang-format -style=google"'
 let g:formatters_cpp = ['googlecplus']
-noremap <S-C-f> :Autoformat<CR>
+noremap <S-f> :Autoformat<CR>
+noremap <leader>w :w<CR>
+
+" indent indicator
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_start_level = 2
+" let g:indent_guides_guide_size = 2
+noremap <C-I> :IndentGuidesToggle<CR>
